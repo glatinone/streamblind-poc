@@ -1,0 +1,52 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, 'Courier New', monospace">
+  <rect width="900" height="320" fill="#05060a"/>
+
+  <!-- Left: terminal -->
+  <rect x="0" y="0" width="450" height="320" fill="#0d1117"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text x="20" y="60" font-size="15" fill="#3fb950">$ python client_app.py c 5</text>
+
+  <clipPath id="revealC">
+    <rect x="18" y="75" height="30" width="0">
+      <animate attributeName="width" values="0;410;410;0" keyTimes="0;0.55;0.85;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </clipPath>
+  <text x="20" y="95" font-size="16" fill="#e6edf3" clip-path="url(#revealC)">The quick brown fox jumps</text>
+
+  <!-- pulsing proxy indicator -->
+  <text x="20" y="140" font-size="13" fill="#d29922">proxy: idle read timeout approaching</text>
+  <circle cx="330" cy="136" r="5" fill="#d29922">
+    <animate attributeName="opacity" values="1;0.2;1" dur="0.6s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="20" y="180" font-size="13" fill="#7d8590" opacity="0">
+    recv() returned b"" (clean FIN, zero bytes)
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.55;0.55;0.9;1" dur="7s" repeatCount="indefinite"/>
+  </text>
+  <text x="20" y="205" font-size="13" fill="#ff7b72" font-weight="bold" opacity="0">
+    network_error: null  &#8592; no exception raised
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.6;0.6;0.9;1" dur="7s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Right: telemetry state, never changes -->
+  <rect x="450" y="0" width="450" height="320" fill="#f6f8fa"/>
+  <circle cx="474" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="494" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="514" cy="22" r="6" fill="#27c93f"/>
+  <text x="470" y="60" font-size="15" fill="#57606a">$ cat telemetry_state.json</text>
+  <text x="470" y="95" font-size="16" fill="#24292f">{</text>
+  <text x="490" y="120" font-size="16" fill="#cf222e" font-weight="bold">"output_tokens": 0,</text>
+  <text x="490" y="145" font-size="16" fill="#24292f">"admin_pipeline_status":</text>
+  <text x="490" y="170" font-size="16" fill="#cf222e" font-weight="bold">  "idle"</text>
+  <text x="470" y="195" font-size="16" fill="#24292f">}</text>
+
+  <circle cx="484" cy="240" r="6" fill="#cf222e">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="500" y="245" font-size="14" fill="#cf222e" font-weight="bold">frozen this entire loop</text>
+
+  <line x1="450" y1="0" x2="450" y2="320" stroke="#30363d" stroke-width="2"/>
+  <text x="450" y="308" font-size="13" fill="#8b949e" text-anchor="middle">Vector C: proxy read timeout, a clean disconnect that raises no exception</text>
+</svg>

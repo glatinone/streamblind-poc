@@ -1,0 +1,43 @@
+<svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" font-family="Consolas, 'Courier New', monospace">
+  <defs>
+    <linearGradient id="termGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#010409"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="400" fill="#0a0c10"/>
+
+  <!-- Left: terminal panel, complete response -->
+  <rect x="0" y="0" width="600" height="400" fill="url(#termGrad)"/>
+  <circle cx="30" cy="28" r="7" fill="#ff5f56"/>
+  <circle cx="52" cy="28" r="7" fill="#ffbd2e"/>
+  <circle cx="74" cy="28" r="7" fill="#27c93f"/>
+  <text x="30" y="90" font-size="20" fill="#3fb950">$ python client_app.py a 5</text>
+  <text x="30" y="130" font-size="20" fill="#e6edf3">The quick brown fox jumps</text>
+  <rect x="298" y="112" width="12" height="24" fill="#3fb950"/>
+  <text x="30" y="175" font-size="15" fill="#7d8590">[cognitive] render pipeline finished</text>
+  <text x="30" y="240" font-size="15" fill="#3fb950">100% of the response reached the user.</text>
+
+  <!-- Right: telemetry panel, frozen -->
+  <rect x="600" y="0" width="600" height="400" fill="#f6f8fa"/>
+  <circle cx="630" cy="28" r="7" fill="#ff5f56"/>
+  <circle cx="652" cy="28" r="7" fill="#ffbd2e"/>
+  <circle cx="674" cy="28" r="7" fill="#27c93f"/>
+  <text x="630" y="90" font-size="20" fill="#57606a">$ cat telemetry_state.json</text>
+  <text x="630" y="130" font-size="19" fill="#24292f">{</text>
+  <text x="650" y="158" font-size="19" fill="#cf222e" font-weight="bold">"output_tokens": 0,</text>
+  <text x="650" y="186" font-size="19" fill="#24292f">"admin_pipeline_status":</text>
+  <text x="650" y="212" font-size="19" fill="#cf222e" font-weight="bold">  "idle"</text>
+  <text x="630" y="240" font-size="19" fill="#24292f">}</text>
+  <text x="630" y="300" font-size="15" fill="#cf222e" font-weight="bold">Zero tokens recorded. No error thrown.</text>
+
+  <!-- Divider + mismatch badge -->
+  <line x1="600" y1="0" x2="600" y2="400" stroke="#30363d" stroke-width="2"/>
+  <g transform="translate(600,200) rotate(-8)">
+    <rect x="-95" y="-24" width="190" height="48" rx="6" fill="#cf222e" stroke="#ffffff" stroke-width="3"/>
+    <text x="0" y="8" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">DESYNCED</text>
+  </g>
+
+  <text x="600" y="380" font-size="16" fill="#8b949e" text-anchor="middle">StreamBlind: Asynchronous Telemetry Blindness &amp; State Desynchronization</text>
+</svg>
