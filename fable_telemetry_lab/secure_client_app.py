@@ -190,6 +190,13 @@ class StreamIntegrityError(Exception):
     pass
 
 
+def _socket_timeout_seconds() -> float:
+    try:
+        return float(os.getenv("STREAMBLIND_SOCKET_TIMEOUT", "10"))
+    except ValueError:
+        return 10.0
+
+
 def run_buffered(vector: str, n_chunks: int) -> dict:
     """V1 strategy: safe, but no incremental UX. Kept for comparison."""
     reset_state()
@@ -197,6 +204,7 @@ def run_buffered(vector: str, n_chunks: int) -> dict:
     result = {"vector": vector, "committed": False, "error": None}
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(_socket_timeout_seconds())
     sock.connect((HOST, PORT))
     sock.sendall(f"GET /v1/messages?vector={vector}&chunks={n_chunks} HTTP/1.1\r\nHost: {HOST}\r\n\r\n".encode())
 
@@ -412,6 +420,7 @@ def run_speculative(vector: str, n_chunks: int) -> dict:
               "chars_printed_before_failure": 0}
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(_socket_timeout_seconds())
     sock.connect((HOST, PORT))
     sock.sendall(f"GET /v1/messages?vector={vector}&chunks={n_chunks} HTTP/1.1\r\nHost: {HOST}\r\n\r\n".encode())
 
